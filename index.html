@@ -14,17 +14,22 @@
       <section class="search-form">
         <form id="js-form">
           <label for="user-search">Enter a musician or band name:</label>
-          <input type="text" name="user-search" id="js-user-search" value="lord huron" required>
+          <input type="text" name="user-search" id="js-user-search" value="Lord Huron" required>
           <button type="submit">Search</button>
         </form>
       </section>
+      <section id="youTubeResults" class="hidden">
+        <h2>Search results</h2>
+          <ul id="youtube-results-list">
+          </ul>
+      </section>
+      <section id="eventsResults" class="hidden">
+        <h2>Search results</h2>
+          <table id="events-results-list">
+          </table>
+      </section>
       <section id="error-log">
         <p id="js-error-message" class="error-message"></p>
-      </section>
-      <section id="results" class="hidden">
-        <h2>Search results</h2>
-          <ul id="results-list">
-          </ul>
       </section>
     </div>
   <script src="script.js"></script>

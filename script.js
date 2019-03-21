@@ -1,8 +1,12 @@
 'use strict';
 
-const apiKey = 'AIzaSyB82XBq6funiFeBBP91XYK-Hk9LdpOiqPY';
+const youTubeApiKey = 'AIzaSyB82XBq6funiFeBBP91XYK-Hk9LdpOiqPY';
 
-const searchURL = 'https://www.googleapis.com/youtube/v3/search/'
+const youTubeSearchURL = 'https://www.googleapis.com/youtube/v3/search/'
+
+const eventsApiKey = 'pNPBSZnVpAU8ZxAVgUyl15pNzaRioPah';
+
+const eventsSearchURL = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
 
 function formatQueryParams(params) {
@@ -13,9 +17,9 @@ function formatQueryParams(params) {
 
 function displayResults(responseJson) {
   console.log(responseJson);
-  $('#results-list').empty();
+  $('#youtube-results-list').empty();
   for (let i = 0; i < responseJson.items.length; i++){
-    $('#results-list').append(
+    $('#youtube-results-list').append(
       `<li><h3>${responseJson.items[i].snippet.title}</h3>
       <p>${responseJson.items[i].snippet.description}</p>
       <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="320" height="240" controls allowFullScreen>
@@ -23,20 +27,20 @@ function displayResults(responseJson) {
       </li>`
     )};
   //display the results section  
-  $('#results').removeClass('hidden');
+  $('#youTubeResults').removeClass('hidden');
 };
 
 function getVideos(searchTerm) {
   const params = {
     part: 'snippet',
-    key: apiKey,
+    key: youTubeApiKey,
     order: 'viewCount',
     type: 'video',
     videoEmbeddable: true,
     q: searchTerm
   };
   const queryString = formatQueryParams(params)
-  const url = searchURL + '?' + queryString;
+  const url = youTubeSearchURL + '?' + queryString;
 
   console.log(url);
 
