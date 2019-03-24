@@ -8,12 +8,33 @@ const eventApiKey = 'pNPBSZnVpAU8ZxAVgUyl15pNzaRioPah';
 
 const eventSearchURL = 'https://app.ticketmaster.com/discovery/v2/events.json'
 
+const wikiSearchURL = 'https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=extracts%7Cpageimages&indexpageids=1&redirects=1&exchars=1200&exsectionformat=plain&piprop=name%7Cthumbnail%7Coriginal&pithumbsize=250&titles='
+
 
 function formatQueryParams(params) {
   const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
   return queryItems.join('&');
 }
+
+function displayWikiResults(responseJson) {
+    console.log(responseJson);
+    let pageID = responseJson.query.pageids[0];
+    let pageTitle = responseJson.query.pages[pageID].title;
+    let pageThumb = responseJson.query.pages[pageID].thumbnail.source;
+    let pageExtract = responseJson.query.pages[pageID].extract;
+    $('#wikiResults').empty();
+    $('#wikiResults').append(
+        `
+        <img src="${pageThumb}">
+        ${pageExtract}
+        <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on wikipedia</a>
+        `
+      );
+    //display the results section  
+    $('#wikiResults').removeClass('hidden');
+    }
+
 
 function displayYouTubeResults(responseJson) {
   console.log(responseJson);
@@ -44,6 +65,35 @@ function displayEventResults(responseJson) {
     //display the results section  
     $('#eventResults').removeClass('hidden');
   };
+
+
+function getWiki(searchTerm) {
+    let modSearchTerm = searchTerm.split(" ");
+    for (let i=0; i < modSearchTerm.length; i++){
+    let testwd = modSearchTerm[i];
+    let firLet = testwd.substr(0,1);
+    let rest = testwd.substr(1, testwd.length -1)
+    modSearchTerm[i] = firLet.toUpperCase() + rest
+    }
+    let newSearchTerm = modSearchTerm.join('%20');
+  
+    const url = wikiSearchURL + newSearchTerm
+   
+    console.log(url);
+  
+    fetch(url)
+  
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(response.statusText);
+      })
+      .then(responseJson => displayWikiResults(responseJson))
+      .catch(err => {
+        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      });
+  }
 
 function getVideos(searchTerm) {
   const params = {
@@ -102,6 +152,7 @@ function watchForm() {
     const searchTerm = $('#js-user-search').val();
     getVideos(searchTerm);
     getEvents(searchTerm);
+    getWiki(searchTerm);
   });
 }
 
