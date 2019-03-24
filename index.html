@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>See the top viewed YouTube videos for your favorite musical artist!</h1>
+      <h1>See the top viewed YouTube videos and upcoming events for your favorite musical artist!</h1>
       <section class="search-form">
         <form id="js-form">
           <label for="user-search">Enter a musician or band name:</label>
@@ -18,16 +18,18 @@
           <button type="submit">Search</button>
         </form>
       </section>
-      <section id="youTubeResults" class="hidden">
-        <h2>Search results</h2>
-          <ul id="youtube-results-list">
-          </ul>
-      </section>
-      <section id="eventsResults" class="hidden">
-        <h2>Search results</h2>
-          <table id="events-results-list">
-          </table>
-      </section>
+      <div class ="results-container">
+         <section id="youTubeResults" class="hidden">
+             <h2>Search results</h2>
+             <ul id="youtube-results-list">
+             </ul>
+         </section>
+         <section id="eventResults" class="hidden">
+            <h2>Search results</h2>
+            <ul id="event-results-list">
+            </ul>
+         </section>
+      </div>
       <section id="error-log">
         <p id="js-error-message" class="error-message"></p>
       </section>
