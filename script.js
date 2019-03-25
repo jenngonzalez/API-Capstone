@@ -19,13 +19,14 @@ function formatQueryParams(params) {
 
 function displayWikiResults(responseJson) {
     console.log(responseJson);
+    $('#wikiResults').empty();
     let pageID = responseJson.query.pageids[0];
     let pageTitle = responseJson.query.pages[pageID].title;
     let pageThumb = responseJson.query.pages[pageID].thumbnail.source;
     let pageExtract = responseJson.query.pages[pageID].extract;
-    $('#wikiResults').empty();
     $('#wikiResults').append(
         `
+        <h2>WIKIPEDIA</h2>
         <img src="${pageThumb}">
         ${pageExtract}
         <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on wikipedia</a>
@@ -142,7 +143,7 @@ function getEvents(searchTerm) {
         .then(responseJson => displayEventResults(responseJson))
         .catch(err => {
           // $('#js-error-message').text(`Something went wrong: ${err.message}`);
-          $('#js-error-message').text(`Something went wrong: ${err.message}`);
+          $('#js-error-message').text(`Sorry, no search results are available.`);
         });
 }
 

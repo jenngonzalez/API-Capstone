@@ -1,3 +1,23 @@
+* {
+    box-sizing: border-box;
+    text-align: center;
+}
+
 .hidden {
     display: none;
+}
+
+li {
+    list-style: none;
+    margin-left: -15px;
+    /* need these to align with headings, hidden list-style is throwing off alignment */
+}
+
+p {
+    text-align: left;
+}
+
+section {
+    padding: 20px;
+    border: 1px solid black;
 }
