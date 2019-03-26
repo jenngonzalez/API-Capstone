@@ -27,8 +27,8 @@ function displayWikiResults(responseJson) {
     $('#wikiResults').append(
         `
         <h2>WIKIPEDIA</h2>
-        <img src="${pageThumb}">
-        ${pageExtract}
+        <img src="${pageThumb}" alt="${pageTitle}">
+        <p>${pageExtract}</p>
         <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on wikipedia</a>
         `
       );
@@ -72,9 +72,9 @@ function getWiki(searchTerm) {
     let modSearchTerm = searchTerm.split(" ");
     for (let i=0; i < modSearchTerm.length; i++){
     let testwd = modSearchTerm[i];
-    let firLet = testwd.substr(0,1);
+    let firstLetter = testwd.substr(0,1);
     let rest = testwd.substr(1, testwd.length -1)
-    modSearchTerm[i] = firLet.toUpperCase() + rest
+    modSearchTerm[i] = firstLetter.toUpperCase() + rest
     }
     let newSearchTerm = modSearchTerm.join('%20');
   
@@ -144,7 +144,7 @@ function getEvents(searchTerm) {
         .then(responseJson => displayEventResults(responseJson))
         .catch(err => {
           // $('#js-error-message').text(`Something went wrong: ${err.message}`);
-          $('#js-error-message').text(`Sorry, no search results are available.`);
+          $('#js-error-message').text(`Sorry, unable to find any upcoming events for that artist.`);
         });
 }
 
