@@ -126,7 +126,8 @@ function getVideos(searchTerm) {
 function getEvents(searchTerm) {
     const params = {
         apikey: eventApiKey,
-        keyword: searchTerm
+        keyword: searchTerm,
+        sort: 'date,asc'
       };
       const queryString = formatQueryParams(params)
       const url = eventSearchURL + '?' + queryString;
