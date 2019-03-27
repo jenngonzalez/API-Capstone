@@ -18,23 +18,38 @@ function formatQueryParams(params) {
 }
 
 function displayWikiResults(responseJson) {
-    console.log(responseJson);
     $('#wikiResults').empty();
     let pageID = responseJson.query.pageids[0];
     let pageTitle = responseJson.query.pages[pageID].title;
-    let pageThumb = responseJson.query.pages[pageID].thumbnail.source;
+    // let pageThumbCheck = responseJson.query.pages[pageID].thumbnail.source;
+    let pageThumb = '';
     let pageExtract = responseJson.query.pages[pageID].extract;
+    //looks for if a thumbnail exists, and if so, let pageThumb variable be equal to the URL at .source
+    if (responseJson.query.pages[pageID].thumbnail != null) {
+        pageThumb = responseJson.query.pages[pageID].thumbnail.source;
+    };
     $('#wikiResults').append(
         `
         <h2>WIKIPEDIA</h2>
         <img src="${pageThumb}" alt="${pageTitle}">
         <p>${pageExtract}</p>
-        <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on wikipedia</a>
+        <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a>
         `
       );
+    // else if (responseJson.query.pages[pageID].thumbnail = null) {
+    // $('#wikiResults').append(
+    //     `
+    //     <h2>WIKIPEDIA</h2>
+    //     <h3>${pageTitle}</h3>
+    //     <p>${pageExtract}</p>
+    //     <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a>
+    //     `
+    //   );
+    // }
     //display the results section  
     $('#wikiResults').removeClass('hidden');
-    }
+ }
+
 
 
 function displayYouTubeResults(responseJson) {
@@ -43,10 +58,10 @@ function displayYouTubeResults(responseJson) {
   for (let i = 0; i < responseJson.items.length; i++){
     $('#youtube-results-list').append(
       `<li><h3>${responseJson.items[i].snippet.title}</h3>
-      <p>${responseJson.items[i].snippet.description}</p>
-      <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="320" height="240" controls allowFullScreen>
-      </iframe>
-      </li>`)};
+       <p>${responseJson.items[i].snippet.description}</p>
+       <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="320" height="240" controls allowFullScreen>
+       </iframe>
+       </li>`)};
   //display the results section  
   $('#youTubeResults').removeClass('hidden');
 };
@@ -152,6 +167,7 @@ function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-user-search').val();
+    $('#js-error-message').empty();
     getVideos(searchTerm);
     getEvents(searchTerm);
     getWiki(searchTerm);

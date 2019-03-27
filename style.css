@@ -3,6 +3,13 @@
     text-align: center;
 }
 
+
+ul, li {
+    margin: 0px;
+    padding: 0px;
+}
+
+
 .hidden {
     display: none;
 }
