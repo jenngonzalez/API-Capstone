@@ -34,6 +34,7 @@ function displayWikiResults(responseJson) {
         <img src="${pageThumb}" alt="${pageTitle}">
         <p>${pageExtract}</p>
         <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a>
+        <hr>
         `
       );
     // else if (responseJson.query.pages[pageID].thumbnail = null) {
@@ -42,7 +43,7 @@ function displayWikiResults(responseJson) {
     //     <h2>WIKIPEDIA</h2>
     //     <h3>${pageTitle}</h3>
     //     <p>${pageExtract}</p>
-    //     <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a>
+    //     <div class="wikiLink"><a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a></div>
     //     `
     //   );
     // }
@@ -58,7 +59,7 @@ function displayYouTubeResults(responseJson) {
   for (let i = 0; i < responseJson.items.length; i++){
     $('#youtube-results-list').append(
       `<li><h3>${responseJson.items[i].snippet.title}</h3>
-       <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="320" height="240" controls allowFullScreen>
+       <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="250" height="188" controls allowFullScreen>
        </iframe>
        </li>`)};
   //display the results section  
@@ -75,8 +76,10 @@ function displayEventResults(responseJson) {
       $('#event-results-container').append(`
         <div id="event-date">${responseJson._embedded.events[i].dates.start.localDate}
         </div>
-        <div id="event-location"><h3><a href="${responseJson._embedded.events[i].url}">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></h3>
-        ${responseJson._embedded.events[i]._embedded.venues[0].city.name}, ${responseJson._embedded.events[i]._embedded.venues[0].state.name}
+        <div id="event-location">
+        <p><a href="${responseJson._embedded.events[i].url}">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></p>
+        <p>${responseJson._embedded.events[i]._embedded.venues[0].city.name}, ${responseJson._embedded.events[i]._embedded.venues[0].state.name}</p>
+        <hr>
         </div>
         `
       )};
@@ -161,7 +164,7 @@ function getEvents(searchTerm) {
         .then(responseJson => displayEventResults(responseJson))
         .catch(err => {
           // $('#js-error-message').text(`Something went wrong: ${err.message}`);
-          $('#js-error-message').text(`Sorry, unable to find any upcoming events for that artist.`);
+          $('#event-no-results').text(`Sorry, unable to find any upcoming events for that artist.`);
         });
 }
 
@@ -170,6 +173,7 @@ function watchForm() {
     event.preventDefault();
     const searchTerm = $('#js-user-search').val();
     $('#js-error-message').empty();
+    $('#event-no-results').empty();
     getVideos(searchTerm);
     getEvents(searchTerm);
     getWiki(searchTerm);
