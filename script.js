@@ -68,14 +68,14 @@ function displayYouTubeResults(responseJson) {
 
 function displayEventResults(responseJson) {
     console.log(responseJson);
-    $('#event-results-list').empty();
+    $('#event-results-container').empty();
     for (let i=0; i < responseJson._embedded.events.length; i++){
-      $('#event-results-list').append(`
-        <li>${responseJson._embedded.events[i].dates.start.localDate}
-        <h3><a href="${responseJson._embedded.events[i].url}">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></h3>
+      $('#event-results-container').append(`
+        <div id="event-date">${responseJson._embedded.events[i].dates.start.localDate}
+        </div>
+        <div id="event-location"><h3><a href="${responseJson._embedded.events[i].url}">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></h3>
         ${responseJson._embedded.events[i]._embedded.venues[0].city.name}, ${responseJson._embedded.events[i]._embedded.venues[0].state.name}
-        </li>
-        <br><br>
+        </div>
         `
       )};
     //display the results section  
