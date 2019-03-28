@@ -58,13 +58,15 @@ function displayYouTubeResults(responseJson) {
   for (let i = 0; i < responseJson.items.length; i++){
     $('#youtube-results-list').append(
       `<li><h3>${responseJson.items[i].snippet.title}</h3>
-       <p>${responseJson.items[i].snippet.description}</p>
        <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="320" height="240" controls allowFullScreen>
        </iframe>
        </li>`)};
   //display the results section  
   $('#youTubeResults').removeClass('hidden');
 };
+
+// removed description,   <p>${responseJson.items[i].snippet.description}</p>
+
 
 function displayEventResults(responseJson) {
     console.log(responseJson);
