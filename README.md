@@ -12,7 +12,7 @@ Search Page:
 ![search page](screenshots/search.png)
 
 Results Page:
-![results page](screenshots/results/png)
+![results page](screenshots/results.png)
 
 
 
