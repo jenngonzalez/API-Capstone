@@ -9,9 +9,11 @@ ARTIST DISCOVERY provides the user with a simple hub to see relevant information
 
 ## SCREENSHOTS
 Search Page:
+
 ![search page](screenshots/search.png)
 
 Results Page:
+
 ![results page](screenshots/results.png)
 
 
