@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Artist Discovery - search for your favorite band or musician for more information about them!">
+    <meta name="description" content="Artist Discovery - search for a band or musician to see more information!">
     <title>Artist Discovery</title>
-
     <!-- styles -->
     <link rel="stylesheet" href="style.css">
-
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Spectral+SC:300" rel="stylesheet">
-
     <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   </head>
@@ -23,36 +20,36 @@
       </nav>
     <main role="main"><a name="top"></a>
       <header>
-        <h1>ARTI<span class="s-alternate">S</span>T DI<span class="s-alternate">S</span>COVERY</h1>
+        <h1>ARTIST DISCOVERY</h1>
         <h2>Learn more about your favorite band or <em>discover a new one!</em></h2>
         <section class="search-form">
         <form id="js-form">
           <label for="user-search">Enter a musician or band name:</label>
-          <input type="text" name="user-search" id="js-user-search" value="Lord Huron" required>
-          <button type="submit">Search</button>
+          <input type="text" name="user-search" id="js-user-search" value="Lord Huron" role="musician-search-field" required>
+          <button type="submit" role="button">Search</button>
         </form>
         </section>
       </header>
       <div class ="results-container">
-       <section id="wikiResults" class="hidden">
-        </section>
-        <section id="youTubeResults" class="hidden">
+       <section id="wikiResults" class="hidden" aria-live="polite">
+       </section>
+       <section id="youTubeResults" class="hidden" aria-live="polite">
            <h2>TOP VIEWED YOUTUBE VIDEOS</h2>             
            <ul id="youtube-results-list">
            </ul>
            <hr>
-          </section>
-          <section id="eventResults" class="hidden">
+       </section>
+       <section id="eventResults" class="hidden" aria-live="polite">
             <h2>UPCOMING EVENTS</h2>
             <div id="event-results-container">
             </div>
             <div id="event-no-results">
             </div>
-          </section>
-        </div>
-        <section id="error-log">
-        <p id="js-error-message" class="error-message"></p>
         </section>
+      </div>
+       <section id="error-log">
+        <p id="js-error-message" class="error-message"></p>
+       </section>
       </div>
     </main>
     <!-- <footer role="content-info">

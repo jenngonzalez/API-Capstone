@@ -37,17 +37,7 @@ function displayWikiResults(responseJson) {
         <hr>
         `
       );
-    // else if (responseJson.query.pages[pageID].thumbnail = null) {
-    // $('#wikiResults').append(
-    //     `
-    //     <h2>WIKIPEDIA</h2>
-    //     <h3>${pageTitle}</h3>
-    //     <p>${pageExtract}</p>
-    //     <div class="wikiLink"><a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a></div>
-    //     `
-    //   );
-    // }
-    //display the results section  
+  
     $('#wikiResults').removeClass('hidden');
  }
 
@@ -61,8 +51,7 @@ function displayYouTubeResults(responseJson) {
       `<li><h3>${responseJson.items[i].snippet.title}</h3>
        <iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" width="250" height="188" controls allowFullScreen>
        </iframe>
-       </li>`)};
-  //display the results section  
+       </li>`)}; 
   $('#youTubeResults').removeClass('hidden');
 };
 
@@ -83,7 +72,6 @@ function displayEventResults(responseJson) {
         </div>
         `
       )};
-    //display the results section  
     $('#eventResults').removeClass('hidden');
   };
 
@@ -112,7 +100,7 @@ function getWiki(searchTerm) {
       })
       .then(responseJson => displayWikiResults(responseJson))
       .catch(err => {
-        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+        $('#js-error-message').text(`Sorry, something went wrong!`);
       });
   }
 
@@ -139,7 +127,7 @@ function getVideos(searchTerm) {
     })
     .then(responseJson => displayYouTubeResults(responseJson))
     .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#js-error-message').text(`Sorry, something went wrong!`);
     });
 }
 
@@ -163,7 +151,6 @@ function getEvents(searchTerm) {
         })
         .then(responseJson => displayEventResults(responseJson))
         .catch(err => {
-          // $('#js-error-message').text(`Something went wrong: ${err.message}`);
           $('#event-no-results').text(`Sorry, unable to find any upcoming events for that artist.`);
         });
 }

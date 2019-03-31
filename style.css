@@ -37,11 +37,6 @@ h3 {
   font-size: 16px;
 }
 
-/* .s-alternate {
-  /* font-feature-settings: "\0071"; */
-  /* font-variant-alternates: swash(s);
-  } */
-
 
 ul, li {
     margin: 0px;
@@ -56,7 +51,6 @@ ul, li {
 li {
     list-style: none;
     margin-left: -15px;
-    /* need these to align with headings, hidden list-style is throwing off alignment */
 }
 
 p {
@@ -77,14 +71,12 @@ a:hover {
   color: peachpuff;
 }
 
-input {
+input, button {
   border-radius: 5px;
 }
 
 section {
     padding: 20px;
-    /* border: 1px #fffaee;
-    border-style: ridge; */
 }
 
 #event-results-container {
@@ -92,12 +84,7 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* flex-basis: 0; */
     flex-wrap: wrap;
-    /* grid-gap: 20px; */
-    /* display: inline; */
-    /* text-align: center;
-    vertical-align: center; */
     align-items: center;
     font-size: 14px;
 }
@@ -128,24 +115,39 @@ hr {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   right: 0;
-  /* text-align: center;
-  margin-left: auto;
-  margin-right: auto; */
 }
 
 
 
-/* Extra small devices (phones, 600px and down) */
-/* @media only screen and (max-width: 600px) {...}  */
+/* come back to this later-- */
+/* @media screen and (min-width: 600px) {
+  .results-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  #wikiResults {
+    overflow-y: scroll;
+    flex: 1 1 300px;
+  }
+  #eventResults {
+    overflow-y: scroll;
+    flex: 1 1 300px;
+  }
+  #youTubeResults {
+    flex: 1 1 300px;
+    align-self: flex-end;
+  }
+} */
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media screen and (min-width: 600px) {
+
+@media screen and (min-width: 900px) {
   header {
-    /* height: 50px; */
     width: 100%;
   }
   .results-container {
@@ -157,130 +159,15 @@ footer {
   #wikiResults{
     width: 33.3%;
     height: 100%;
-    /* overflow-y: scroll; */
-    /* margin-right: 5px; */
   }
   #youTubeResults{
     width: 33.3%;
     height: 100%;
-    /* overflow-y: scroll; */
-    /* margin-right: 5px; */
   }
   #eventResults {
     width: 33.3%;
     height: 100%;
     overflow-y: scroll;
   }
-  /* .wikiLink {
-    margin-top: 800px;
-  } */
-}
-/* @media screen and (min-width: 600px) {
-    .navigation {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-    }
-  
-    /* .first-divide { */
-      /* flex-grow: 1;
-      align-self: flex-end;
-      margin-top: auto; */
-  
-    /* nav li {
-      padding-left: 20px;
-      margin-top: 20px;
-    }
-  
-    header {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: space-evenly;
-      align-items: center;
-      align-content: center;
-    } */
 
-/*   
-    header h1 {
-      margin-top: 120px;
-      max-width: 400px;
-      text-align: left;
-      /* margin-left: 10%; */
-      /* font-size: 35px;
-      width: 50%;
-    } */
-/*   
-    .main-image {
-      width: 50%;
-      flex-grow: 1;
-    }
-  
-    main {
-      width: 100%;
-    }
-  
-    .flex-container {
-      margin-top: 75px;
-    } */
-  
-    /* .second-divide {
-      flex-grow: 1;
-      align-self: flex-end;
-    } */
-  
-  
-  /* body {
-    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-    line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
-  } */ /* font size transitions - needs work */
-  /* } */
-  
-  /* Medium devices (landscape tablets, 768px and up) */
-  /* @media screen and (min-width: 768px) {
-    .flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-    margin-top: 150px;
-    }
-  
-    .bio-text {
-    width: 50%;
-    }
-  
-    .biography p {
-    font-size: 18px;
-    line-height: 2;
-    max-height: 100%;
-    max-width: 100%;
-    margin-left: 10px;
-    }
-  
-    .project-example {
-    width: 50%;
-    flex-grow: 3;
-    }
-  
-    .project-image img {
-    max-height: 300px;
-    max-width: 353px;
-    }
-  } */
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-  /* @media screen and (min-width: 992px) {
-    .biography p {
-      font-size: 20px;
-      line-height: 2;
-      margin-left: 20px;
-    } 
-  
-    header h1 {
-    margin-left: 13%;
-    }
-  } */
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  /* @media only screen and (min-width: 1200px) {...} */
+}
