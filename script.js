@@ -33,7 +33,7 @@ function displayWikiResults(responseJson) {
         <h2>WIKIPEDIA</h2>
         <img src="${pageThumb}" alt="${pageTitle}">
         <p>${pageExtract}</p>
-        <a href="https://en.wikipedia.org/wiki/${pageTitle}">More on Wikipedia</a>
+        <a href="https://en.wikipedia.org/wiki/${pageTitle}" target="blank">More on Wikipedia</a>
         <hr>
         `
       );
@@ -55,8 +55,6 @@ function displayYouTubeResults(responseJson) {
   $('#youTubeResults').removeClass('hidden');
 };
 
-// removed description,   <p>${responseJson.items[i].snippet.description}</p>
-
 
 function displayEventResults(responseJson) {
     console.log(responseJson);
@@ -66,7 +64,7 @@ function displayEventResults(responseJson) {
         <div id="event-date">${responseJson._embedded.events[i].dates.start.localDate}
         </div>
         <div id="event-location">
-        <p><a href="${responseJson._embedded.events[i].url}">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></p>
+        <p><a href="${responseJson._embedded.events[i].url}" target="blank">${responseJson._embedded.events[i]._embedded.venues[0].name}</a></p>
         <p>${responseJson._embedded.events[i]._embedded.venues[0].city.name}, ${responseJson._embedded.events[i]._embedded.venues[0].state.name}</p>
         <hr>
         </div>
@@ -161,6 +159,7 @@ function watchForm() {
     const searchTerm = $('#js-user-search').val();
     $('#js-error-message').empty();
     $('#event-no-results').empty();
+    $('.placeholder-image').hide();
     getVideos(searchTerm);
     getEvents(searchTerm);
     getWiki(searchTerm);
