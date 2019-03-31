@@ -159,7 +159,8 @@ function watchForm() {
     const searchTerm = $('#js-user-search').val();
     $('#js-error-message').empty();
     $('#event-no-results').empty();
-    $('.placeholder-image').hide();
+    $('#placeholder-image').hide();
+    $('#results-container').removeClass('hidden');
     getVideos(searchTerm);
     getEvents(searchTerm);
     getWiki(searchTerm);
